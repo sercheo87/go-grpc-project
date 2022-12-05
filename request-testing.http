@@ -1,0 +1,58 @@
+### Register a new User
+
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "elon@musk.com",
+  "password": "1234567"
+}
+
+### Login a User
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "elon@musk.com",
+  "password": "1234567"
+}
+
+### Create Product
+
+< {%
+    request.variables.set("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE3NDkxMDMsImlzcyI6ImdvLWdycGMtYXV0aC1zdmMiLCJJZCI6MSwiRW1haWwiOiJlbG9uQG11c2suY29tIn0.pnFkxPRUFw2Gf2a0KFBH4bpbdIGgy5QZtwA0FEnPsvI")
+%}
+POST http://localhost:3000/product
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Product A",
+  "stock": 3,
+  "price": 15
+}
+
+### Fine One Product
+
+< {%
+    request.variables.set("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE3NDU1NDIsImlzcyI6ImdvLWdycGMtYXV0aC1zdmMiLCJJZCI6MSwiRW1haWwiOiJlbG9uQG11c2suY29tIn0.TA3xBevP3cnqUgRCPF4GMYMknKCk5BVUV4H7sW9zeIQ")
+%}
+GET http://localhost:3000/product/1
+Authorization: Bearer {{token}}
+
+### Create Order
+
+< {%
+    request.variables.set("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDE3NDU1NDIsImlzcyI6ImdvLWdycGMtYXV0aC1zdmMiLCJJZCI6MSwiRW1haWwiOiJlbG9uQG11c2suY29tIn0.TA3xBevP3cnqUgRCPF4GMYMknKCk5BVUV4H7sW9zeIQ")
+%}
+POST http://localhost:3000/order
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 1
+}
+
+###
